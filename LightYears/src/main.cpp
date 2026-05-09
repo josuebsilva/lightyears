@@ -1,9 +1,12 @@
 #include <iostream>
-#include <SFML/Graphics.hpp>
+#include <framework/Application.h>
+#include <memory>
 
 int main() {
-	std::cout << "Hello World" << std::endl;
+	std::cout << "Light Years" << std::endl;
+	
+	std::unique_ptr<ly::Application> app = std::make_unique <ly::Application>();
+	app->Run();
 
-	sf::RenderWindow renderWindow{ sf::VideoMode({200, 200}), "My Window" };
 	return 0;
 }
