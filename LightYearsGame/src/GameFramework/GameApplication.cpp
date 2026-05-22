@@ -1,0 +1,12 @@
+#include "GameFramework/GameApplication.h"
+#include "framework/World.h"
+
+ly::Application* GetApplication() {
+	return new ly::GameApplication{};
+}
+
+namespace ly {
+	GameApplication::GameApplication() {
+		loadWorld<World>();
+	}
+}

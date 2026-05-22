@@ -5,7 +5,8 @@ namespace ly {
 	Application::Application() 
 		: mWindow{ sf::VideoMode({1024, 800}), "Light Years" },
 		mTargetFrameRate {60.0f},
-		mTickClock {}
+		mTickClock {},
+		currentWorld {nullptr}
 	{
 
 	}
@@ -26,13 +27,13 @@ namespace ly {
 			accumulatedTime += frameDeltaTime;
 			while (accumulatedTime > targetDeltaTime) {
 				accumulatedTime -= targetDeltaTime;
-				Tick(targetDeltaTime);
-				Display();
+				TickInternal(targetDeltaTime);
+				RenderInternal();
 			}
 		}
 	}
 
-	void Application::Display() {
+	void Application::RenderInternal() {
 		mWindow.clear();
 		Render();
 		mWindow.display();
@@ -53,7 +54,10 @@ namespace ly {
 
 	}
 
-	void Application::Update(float deltaTime) {
+	void Application::TickInternal(float deltaTime) {
 		Tick(deltaTime);
+		if (currentWorld) {
+			currentWorld->TickInternal(deltaTime);
+		}
 	}
 }

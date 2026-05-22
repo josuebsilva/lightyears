@@ -1,0 +1,16 @@
+#pragma once
+namespace ly {
+	class Application;
+	class World {
+		public:
+			World(Application* app);
+			void BeginPlayInternal();
+			void TickInternal(float deltaTime);
+			virtual ~World();
+		private:
+			void BeginPlay();
+			void Tick(float deltaTime);
+			Application* mApp;
+			bool mBeginPlay;
+	};
+}
